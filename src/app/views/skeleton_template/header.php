@@ -7,6 +7,7 @@ if (!$is_ajax):
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <title>Felicity · IIIT Hyderabad</title>
     <link rel="stylesheet" href="<?= base_url() ?>static/styles/vendor/normalize.min.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
     <link rel="stylesheet" href="<?= base_url() ?>static/styles/vendor/felicons.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="<?= base_url() ?>static/styles/core.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="<?= base_url() ?>static/styles/schedule.css" media="screen" title="no title" charset="utf-8">
