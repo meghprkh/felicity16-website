@@ -8,6 +8,9 @@ $nav-link-width: 6rem;
 $nav-link-bottom-margin: 1em;
 $page-open-animation-timeout: .7s;
 
+$red: rgb(202, 60, 60);
+$green: rgb(28, 184, 65);
+
 * {
     box-sizing: border-box;
 }
@@ -35,6 +38,15 @@ body {
     list-style: none;
     margin: 0;
     padding: 0;
+}
+
+%main-bottom-nav {
+    @extend %flat-list;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
 }
 
 %clearfix {
@@ -155,13 +167,8 @@ nav {
 }
 
 .primary-nav {
-    @extend %flat-list;
-    position: absolute;
-    bottom: 0;
+    @extend %main-bottom-nav;
     width: calc(50% - #{$ball-width / 2});
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-end;
 
     &.left {
         left: 0;
@@ -418,6 +425,135 @@ nav {
     to {
         box-shadow: 0 0 0 200px rgba(0, 0, 0, 0);
         opacity: 0;
+    }
+}
+
+.contest-nav {
+    @extend %main-bottom-nav;
+    width: 100%;
+
+    li {
+        animation: 2s infinite float;
+
+        @for $i from 1 through 4 {
+            &:nth-child(#{$i}) {
+                animation-delay: #{$i / 5}s;
+            }
+        }
+
+        a {
+            pointer-events: all;
+        }
+    }
+}
+
+.contest-nav-link {
+    display: block;
+    width: 100%;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: bottom;
+    margin-bottom: $nav-link-bottom-margin;
+    background-color: white;
+    color: orange;
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: .5em 1em;
+}
+
+.contest {
+    .contest-tnc {
+        @extend %clearfix;
+        .contest-title {
+            float: left;
+            font-size: 3.5em;
+        }
+        .contest-caption {
+            float: right;
+            padding-top: 2.5em;
+            text-transform: uppercase;
+        }
+    }
+    .scoreboard {
+        .flag-container {
+            border-right: 0;
+        }
+        .flag-container + td {
+            border-left: 0;
+        }
+    }
+    .problems {
+        .incorrect {
+            color: $red;
+        }
+        .correct {
+            color: $green;
+        }
+    }
+    .problem {
+        padding: 0 0.5em;
+        .level {
+            border-bottom: 1px solid #FFF;
+            text-transform: uppercase;
+            margin-top: 0.5em;
+        }
+        .title {
+            font-size: 2em;
+            margin-bottom: 0.5em;
+        }
+        .statement {
+            border-bottom: 2px solid #FFF;
+        }
+        .answer {
+            text-align: center;
+            padding: 0.5em 0em;
+            input {
+                display: inline-block;
+                margin: 0.2em;
+            }
+            input[type="text"] {
+                font-size: 1.2em;
+            }
+            border-bottom: 2px solid #FFF;
+        }
+        .comments {
+            .comment {
+                margin-left: 1em;
+                margin-bottom: 0.5em;
+                border-left: 2px solid #543;
+                border-bottom: 3px solid #543;
+                padding: 0.5em;
+                .meta {
+                    @extend %clearfix;
+                    padding-bottom: 0.2em;
+                    border-bottom: 1px solid #AAA;
+                    .author {
+                        float: left;
+                        color: #EEE;
+                    }
+                    .time {
+                        float: right;
+                        color: #EEE;
+                    }
+                }
+                .body {
+                    padding: 0.2em 0;
+                }
+            }
+            &:nth-child(2) {
+                border-top: 1px solid #543;
+            }
+            .pure-form {
+                margin: 1em;
+
+                input[type="submit"] {
+                    margin-top: 0.5em;
+                }
+            }
+        }
+        .btn {
+            border-radius: 5px;
+        }
     }
 }
 
@@ -812,11 +948,11 @@ textarea {
 }
 
 .error {
-    background: rgb(202, 60, 60);
+    background: $red;
 }
 
 .success {
-    background: rgb(28, 184, 65);
+    background: $green;
 }
 
 .container-inline-block {
